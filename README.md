@@ -1,4 +1,4 @@
-# tgind  
+# Tgind  
 Telegram bot api which gives you simplest way to make your bots
 
 #### Install it by cammand  
