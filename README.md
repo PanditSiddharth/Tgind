@@ -14,7 +14,7 @@ Basic template to start creating bot
 
 ```js
 let Tgind = require('tgind');
-let bot = new Tgind("Yor bot token", {"polling": true});
+let bot = new Tgind("Yor bot token", {"start": true});
 
 bot.on("message", (msg) => {
     msg.send(msg.text)

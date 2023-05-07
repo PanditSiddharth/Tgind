@@ -18,7 +18,7 @@ class Tgind extends EventEmitter {
     this.TOKEN = TOKEN;
     this.options = options;
     this.offset = 0;
-    if(options.polling){
+    if(options.start){
       if(!options.dropUpdates)
       this.start({"dropUpdates": true})
       else
