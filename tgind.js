@@ -428,7 +428,7 @@ class Tgind extends EventEmitter {
           
           }
 
-          this.emit(evnt, update[evnt]);
+          this.emit(evnt, updt);
         });
       }
       await new Promise(resolve => setTimeout(resolve, 500));
