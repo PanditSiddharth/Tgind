@@ -402,26 +402,31 @@ class Tgind extends EventEmitter {
       const response = await this.request("getUpdates", options)
         .catch((err) => { throw new Error("Error getting updates\n", err) })
 
-      if (response.ok && response.result.length > 0) {
-        this.offset = response.result[response.result.length - 1].update_id + 1;
-        response.result.forEach(update => {
-          let evnt = Object.keys(update)[1]
-          update[evnt].update_id = update.update_id
-
-          for (let i = 4; i < (keys.length -8); i++) {
-            if(keys[i] == "getFile")
-            break;
-            // console.log(typeof this[keys[i]], keys[i])
-          if(typeof this[keys[i]] != "function")
-          continue;
-
-          let func = this[keys[i]].bind(null, update[evnt].chat.id)
-          Object.defineProperty(update[evnt], keys[i], {
-          "value": func,
-          "enumerable": false
-        })
-        
-        }
+        if (response.ok && response.result.length > 0) {
+          this.offset = response.result[response.result.length - 1].update_id + 1;
+          response.result.forEach(update => {
+            let evnt = Object.keys(update)[1]
+            let updt = update[evnt]
+            if(updt.id){
+              delete updt.message.from
+              let msgg = updt.message
+              delete updt.message;
+              updt = {...updt, ...msgg}
+            } 
+              updt.update_id = update.update_id
+              
+            for (let i = 4; i < (keys.length -8); i++) {
+              if(keys[i] == "getFile")
+              break;
+            if(typeof this[keys[i]] != "function")
+            continue;
+            let func = this[keys[i]].bind(null, updt.chat.id)
+            Object.defineProperty(updt, keys[i], {
+            "value": func,
+            "enumerable": false
+          })
+          
+          }
 
           this.emit(evnt, update[evnt]);
         });
