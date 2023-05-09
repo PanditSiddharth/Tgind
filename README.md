@@ -42,12 +42,28 @@ module.exports = async (req, res) => {
 ## All functios
 
 ```js
-request(functionNameOfTelegram, FunctionOptions)  // universal function  
+Listnerers
+bot.on(event, callbackFunction)
+bot.command(commandName, callbackFunction)
+bot.matches(string or regex, callbackFunction)
 
+/*
+* These all functions will starts by Tgind class instance
+*   For Example 
+*   let bot = new Tgind("bot token")
+*   bot.send(chatid, text)
+*
+* Now see all written bellow
+*/
+
+Some Main functions
+request(functionNameOfTelegram, FunctionOptions)  // universal function  
 stop(options) // Stops bot from fetching updates  
-start(options) // for starting bot in polling mode  
+launch(options)  // for starting bot in polling mode  
 handleUpdates(update, options)  // for starting by with webhook updates  
 
+start(message)
+help(message)
 send(chatid, text, options)   
 edit(chatid, message_id, text, options)   
 del(chatid, message_id)  
@@ -86,7 +102,6 @@ sendAction(chatid, action, options)
 getUserProfilePhotos(user_id, options)  
 getFile(file_id, options)  
 deleteWebhook(optional_dropUpdates)  
-launch(options)  
 ```  
 
 You can use `request` function for all telegrams functions  
