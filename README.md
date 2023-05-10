@@ -1,11 +1,17 @@
 # Tgind  
 Telegram bot api which gives you simplest way to make your bots
 
+Telegram support group
+https://telegram.me/tgindApi
+
+Tgind Updates:
+https://telegram.me/tgindApi
+
 #### Install it by cammand  
 ```js
 npm i tgind
 ```
-
+ss
 ## Example:   
 Basic template to start creating bot  
 
@@ -78,6 +84,7 @@ pin(chatid, message_id, options)
 unpin(chatid, message_id, options)  
 unpinAll(chatid, options)  
 getChat(chatid, options)  
+getMe()
 getAdmins(chatid, options)  
 getMemberCount(chatid, options)  
 leaveChat(chatid, options)  
@@ -117,7 +124,7 @@ bot.on("message", (msg) => {
     bot.request("sendMessage", {"chat_id": msg.chat.id, "text": msg.text})
 })
 
-bot.start({"dropUpdates": true});
+bot.launch({"dropUpdates": true});
 ```
 
 Edit message example :  
@@ -130,7 +137,7 @@ bot.on("message", (msg) => {
     bot.edit(<chat id>, <message id>, <your text>)
 })
 
-bot.start({"dropUpdates": true});
+bot.launch({"dropUpdates": true});
 ```
 
 it supports all tg functions and it is a light weight api  
