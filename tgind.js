@@ -33,7 +33,14 @@ class Tgind extends EventEmitter {
   }
 
   request = async (method, options) => {
-    return (await axios.post(`https://api.telegram.org/bot${this.TOKEN}/${method}`, options)).data
+    let res = (await axios.post(`https://api.telegram.org/bot${this.TOKEN}/${method}`, options)).data
+    if(res && res.result && method != "getUpdates"){
+      let result = res.result
+      delete res.result;
+      return {...res, ...result}
+    } else if(res) {
+      return res;
+    }
   }
 
   /**
@@ -619,8 +626,10 @@ class Tgind extends EventEmitter {
    */
   command = async (cmd, callback) => {
     this.on("message", async (msg) => {
-      if(!msg.text.startsWith("/"))
+      
+      if(!msg.text || !msg.text.startsWith("/"))
       return
+
       if(!cmd.startsWith('/'))
       cmd = "/" + cmd
       if (!msg.text.startsWith(cmd))  
@@ -628,7 +637,7 @@ class Tgind extends EventEmitter {
       let mee;
       if(msg.text.includes("@")){
         mee = await this.getMe()
-        if(msg.text.match(mee.result.username))
+        if(msg.text.match(mee.username))
         callback(msg)
       } else
         callback(msg)
@@ -642,6 +651,8 @@ class Tgind extends EventEmitter {
    */
   matches = async (str, callback) => {
     this.on("message", async (msg) => {
+      if(!msg.text)
+      return
       let mstr = msg.text.match(str)
       if (mstr) {
         Object.assign(msg, mstr)
@@ -730,6 +741,7 @@ class Tgind extends EventEmitter {
   }
 
   launch = async (options = {}) => {
+    console.log("bot running...")
     if (this.run)
       return this.run = false
     options.timeout = 10000;
