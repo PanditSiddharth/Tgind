@@ -657,7 +657,6 @@ class Tgind extends EventEmitter {
       return
       let mstr = msg.text.match(str)
       if (mstr) {
-        console.log(mstr)
         Object.assign(msg, {"match": mstr})
         callback(msg)
       }
