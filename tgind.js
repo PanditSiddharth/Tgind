@@ -37,6 +37,8 @@ class Tgind extends EventEmitter {
     if(res && res.result && method != "getUpdates"){
       let result = res.result
       delete res.result;
+      if(res.ok)
+      delete res.ok;
       return {...res, ...result}
     } else if(res) {
       return res;
@@ -655,7 +657,8 @@ class Tgind extends EventEmitter {
       return
       let mstr = msg.text.match(str)
       if (mstr) {
-        Object.assign(msg, mstr)
+        console.log(mstr)
+        Object.assign(msg, {"match": mstr})
         callback(msg)
       }
     })

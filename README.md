@@ -11,7 +11,7 @@ https://telegram.me/tgindApi
 ```js
 npm i tgind
 ```
-ss
+
 ## Example:   
 Basic template to start creating bot  
 
@@ -45,6 +45,9 @@ module.exports = async (req, res) => {
 ```
 #### is it easy ?
 
+## More Examples
+https://github.com/PanditSiddharth/Tgind/blob/main/examples/readme.md
+
 ## All functios
 
 ```js
@@ -66,7 +69,7 @@ Some Main functions
 request(functionNameOfTelegram, FunctionOptions)  // universal function  
 stop(options) // Stops bot from fetching updates  
 launch(options)  // for starting bot in polling mode  
-handleUpdates(update, options)  // for starting by with webhook updates  
+handleUpdates(update, options) // for starting by with webhook updates  
 
 start(message)
 help(message)
