@@ -66,7 +66,7 @@ bot.matches(string or regex, callbackFunction)
 */
 
 Some Main functions
-request(functionNameOfTelegram, FunctionOptions)  // universal function  
+request(functionNameOfTelegram, FunctionOptions, headers)  // universal functiona
 stop(options) // Stops bot from fetching updates  
 launch(options)  // for starting bot in polling mode  
 handleUpdates(update, options) // for starting by with webhook updates  
@@ -97,10 +97,10 @@ declineJoinRequest(chatid, user_id, options)
 forward(chatid, from_chat_id, message_id, options)  
 copy(chatid, from_chat_id, message_id, options)  
 sendPhoto(chat, photo_link_or_id, options)  
-sendAudio(chat, audio_link_or_id, options)  
-sendVideo(chat, video_link_or_id, options)  
+sendAudio(chat, new InputFile(path, filename), options)  // import class InputFile first by let InputFile = require(tgind/classes)
+sendVideo(chat, new InputFile(path, filename), options)  // import class InputFile first by let InputFile = require(tgind/classes)
 sendLocation(chat, latitude, longitude, options)  
-sendDoc(chat, document, options)  
+sendDoc(chat,new InputFile(path, filename), options)  // import class InputFile first by let InputFile = require(tgind/classes)
 sendVenue(chat, latitude, longitude, title, address, options)  
 sendLocation(chat, phone_number, first_name, options)  
 sendPoll(chat, question, your_options, options)  
@@ -141,6 +141,20 @@ bot.on("message", (msg) => {
 })
 
 bot.launch({"dropUpdates": true});
+```
+
+## sendDoc method 
+```js
+let Tgind = require('tgind')
+let InputFile = require("tgind/classes")
+
+let bot = new Tgind("Your token", {"start": true})
+
+bot.command("doc", async (msg)=> {
+    msg.sendDoc(new InputFile("./myfile.pdf", "tgindfile.pdf"))
+
+})
+
 ```
 
 it supports all tg functions and it is a light weight api  

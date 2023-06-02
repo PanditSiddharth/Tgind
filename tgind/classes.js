@@ -1,0 +1,121 @@
+
+
+// let axios = require('axios');
+// const EventEmitter = require('events');
+// import FormData from 'formdata-polyfill'
+let FormData = require('form-data');
+
+let fs = require('fs')
+
+
+// Document Extensions
+const document = [
+    'pdf',
+    'doc',
+    'docx',
+    'ppt',
+    'pptx',
+    'xls',
+    'xlsx',
+    'txt',
+];
+
+// Audio Extensions
+const audio = [
+    'mp3',
+    'wav',
+    'ogg',
+    'flac',
+    'aac',
+];
+
+// Video Extensions
+const video = [
+    'mp4',
+    'mov',
+    'avi',
+    'mkv',
+    'wmv',
+    'flv',
+];
+
+// Image Extensions
+const image = [
+    'jpg',
+    'jpeg',
+    'png',
+    'gif',
+    'bmp',
+    'svg',
+];
+
+let category = [document, audio, video, image]
+let ct = ["document", "audio", "video", "image"]
+
+class InputFile {
+    constructor(file, filename) {
+        let formData = new FormData();
+        let fext = file.match(/\.([a-zA-Z0-9]+)$/)
+        let ftype;
+
+        for (let i = 0; i < category.length; i++) {
+            const cat = category[i];
+            for (let j = 0; j < cat.length; j++) {
+                if ("." + cat[j] == fext[0]){
+                    ftype = ct[i]
+                    break;
+                }
+            }
+
+        }
+       console.log(ftype)
+        if (filename) {
+            formData.append(ftype, fs.createReadStream(file), {filename});
+        } else {
+            formData.append(ftype, fs.createReadStream(file));
+        }
+          
+        return formData;
+    }
+}
+
+module.exports = InputFile
+
+const _messageTypes = [
+    'text',
+    'animation',
+    'audio',
+    'channel_chat_created',
+    'contact',
+    'delete_chat_photo',
+    'dice',
+    'document',
+    'game',
+    'group_chat_created',
+    'invoice',
+    'left_chat_member',
+    'location',
+    'migrate_from_chat_id',
+    'migrate_to_chat_id',
+    'new_chat_members',
+    'new_chat_photo',
+    'new_chat_title',
+    'passport_data',
+    'photo',
+    'pinned_message',
+    'poll',
+    'sticker',
+    'successful_payment',
+    'supergroup_chat_created',
+    'video',
+    'video_note',
+    'voice',
+    'video_chat_started',
+    'video_chat_ended',
+    'video_chat_participants_invited',
+    'video_chat_scheduled',
+    'message_auto_delete_timer_changed',
+    'chat_invite_link',
+    'chat_member_updated',
+    'web_app_data',
+  ];

@@ -45,3 +45,32 @@ bot.command("yo", (msg) => {
 
 ### Home page  
  https://github.com/PanditSiddharth/Tgind
+
+
+## sendDoc method 
+```js
+let Tgind = require('tgind')
+let InputFile = require("tgind/classes")
+
+let bot = new Tgind("Your token", {"start": true})
+
+bot.command("doc", async (msg)=> {
+    msg.sendDoc(new InputFile("./myfile.pdf", "tgindfile.pdf"))
+
+})
+
+```
+
+## send Medias by  
+```js
+let Tgind = require('tgind')
+let InputFile = require("tgind/classes")
+
+let bot = new Tgind("Your token", {"start": true})
+
+bot.command("doc", async (msg)=> {
+    msg.sendVideoc(new InputFile("./myfile.mp4f", "tgindfile.mp4"))
+
+})
+
+```
