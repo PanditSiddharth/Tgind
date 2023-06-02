@@ -9,45 +9,18 @@ let fs = require('fs')
 
 
 // Document Extensions
-const document = [
-    'pdf',
-    'doc',
-    'docx',
-    'ppt',
-    'pptx',
-    'xls',
-    'xlsx',
-    'txt',
-];
+// const document = ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'txt', '.js', '.py'];
+const document = ['pdf', 'docx', 'xlsx', 'pptx', 'doc', 'ppt', 'xls', 'txt', 'csv', 'rtf', 'html', 'xml', 'json', 'yaml', 'css', 'md', 'sql', 'js', 'py', 'java', 'c', 'cpp', 'h', 'rb', 'php', 'pl', 'sh'];
+
 
 // Audio Extensions
-const audio = [
-    'mp3',
-    'wav',
-    'ogg',
-    'flac',
-    'aac',
-];
+const audio = ['mp3', 'wav', 'ogg', 'flac', 'aac', 'flac'];
 
 // Video Extensions
-const video = [
-    'mp4',
-    'mov',
-    'avi',
-    'mkv',
-    'wmv',
-    'flv',
-];
+const video = [ 'mp4', 'mov', 'avi', 'mkv', 'wmv', 'flv',];
 
 // Image Extensions
-const photo = [
-    'jpg',
-    'jpeg',
-    'png',
-    'gif',
-    'bmp',
-    'svg',
-];
+const photo = ['jpg', 'jpeg', 'png','gif', 'bmp', 'svg'];
 
 let category = [document, audio, video, photo]
 let ct = ["document", "audio", "video", "photo"]
