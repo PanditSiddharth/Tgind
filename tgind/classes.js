@@ -40,7 +40,7 @@ const video = [
 ];
 
 // Image Extensions
-const image = [
+const photo = [
     'jpg',
     'jpeg',
     'png',
@@ -49,8 +49,8 @@ const image = [
     'svg',
 ];
 
-let category = [document, audio, video, image]
-let ct = ["document", "audio", "video", "image"]
+let category = [document, audio, video, photo]
+let ct = ["document", "audio", "video", "photo"]
 
 class InputFile {
     constructor(file, filename) {
