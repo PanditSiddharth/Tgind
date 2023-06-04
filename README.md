@@ -50,6 +50,9 @@ https://github.com/PanditSiddharth/Tgind/blob/main/examples/readme.md
 
 ## All functios
 
+Direct methods see in examples repo 
+https://github.com/PanditSiddharth/Tgind/blob/main/examples/functions.md
+
 ```js
 Listnerers
 bot.on(event, callbackFunction)

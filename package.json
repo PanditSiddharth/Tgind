@@ -1,6 +1,6 @@
 {
   "name": "tgind",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Telegram bot api which gives you simplest way to make your bots",
   "main": "tgind/index.js",
   "exports": {
@@ -12,8 +12,7 @@
   ],
   "dependencies": {
     "axios": "^1.4.0",
-    "axios-form-data": "^1.1.1",
-    "formdata-node": "^4.4.1"
+    "axios-form-data": "^1.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

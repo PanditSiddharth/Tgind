@@ -41,7 +41,7 @@ class InputFile {
             }
 
         }
-       console.log(ftype)
+
         if (filename) {
             formData.append(ftype, fs.createReadStream(file), {filename});
         } else {
