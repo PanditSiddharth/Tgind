@@ -1,3 +1,5 @@
+
+```js
 let Tgind = require('tgind')
 let InputFile = require("tgind/classes")
 
@@ -7,3 +9,4 @@ bot.command("doc", async (msg)=> {
     msg.sendDoc(new InputFile("./myfile.pdf", "tgindfile.pdf"))
 
 })
+```

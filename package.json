@@ -1,19 +1,35 @@
 {
   "name": "tgind",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "Telegram bot api which gives you simplest way to make your bots",
-  "main": "tgind/index.js",
-  "exports": {
-    ".": "./tgind/index.js",
-    "./classes": "./tgind/classes.js"
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
   },
-  "files": [
-    "tgind/*"
-  ],
   "dependencies": {
     "axios": "^1.4.0",
-    "axios-form-data": "^1.1.1"
+    "form-data": "^4.0.0"
   },
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./lib/index.js"
+    },
+    "./classes": {
+      "types": "./classes.d.ts",
+      "default": "./lib/classes.js"
+    }
+  },
+  "files": [
+    "tgind/**/*.ts",
+    "lib/**/*.js",
+    "types/**/*.d.ts",
+    "types/**/*.d.ts.map"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -21,14 +37,7 @@
     "type": "git",
     "url": "git+https://github.com/PanditSiddharth/Tgind.git"
   },
-  "keywords": [
-    "Telegram",
-    "bot",
-    "api",
-    "tgind",
-    "tgind node js",
-    "tgind PanditSiddharth"
-  ],
+  "keywords": [],
   "author": "PanditSiddharth",
   "license": "ISC",
   "bugs": {
@@ -36,5 +45,3 @@
   },
   "homepage": "https://github.com/PanditSiddharth/Tgind#readme"
 }
-
-
