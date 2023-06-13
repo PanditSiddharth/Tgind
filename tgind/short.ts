@@ -619,8 +619,11 @@ type Options = {[key: string]: any;}
      * @param {*} options 
      * @returns 
      */
-    answerCallbackQuery = async (query_id:any, options:Options = {}) => {
-      options.callback_query_id = query_id;
+    ansQuery = async (text:any = null, options:Options = {}) => {
+      options.callback_query_id = this.options.id;
+      if(text)
+      options.text = text;
+
       return await this.request("answerCallbackQuery", options)
     }
 

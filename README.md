@@ -7,6 +7,8 @@ https://telegram.me/tgindApi
 Tgind Updates:
 https://telegram.me/tgindApi
 
+Npm: https://www.npmjs.com/package/tgind  
+
 #### Install it by cammand  
 ```js
 npm i tgind
@@ -18,6 +20,7 @@ Basic template to start creating bot
 ### Polling mode 
          (If you are begginer just start by it)
 
+## JavaScript code  
 ```js
 let Tgind = require('tgind');
 let bot = new Tgind("Yor bot token", {"start": true});
@@ -26,6 +29,17 @@ bot.on("message", (msg) => {
     msg.send(msg.text)
 })
 ```
+
+## Typescript code  
+```ts
+import Tgind from 'tgind';
+let bot = new Tgind("Yor bot token", {"start": true});
+
+bot.on("message", (msg:any) => {
+    msg.send(msg.text)
+})
+```
+
 
 ### Webhook Mode  
 
