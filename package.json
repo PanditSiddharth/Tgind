@@ -1,6 +1,6 @@
 {
   "name": "tgind",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Telegram bot api which gives you simplest way to make your bots",
   "directories": {
     "example": "examples",
@@ -37,7 +37,16 @@
     "type": "git",
     "url": "git+https://github.com/PanditSiddharth/Tgind.git"
   },
-  "keywords": [],
+  "keywords": [
+    "tgind",
+    "telegram",
+    "tgind-telegram",
+    "tgind-PanditSiddharth",
+    "telegram bot api",
+    "bot",
+    "botapi",
+    "bot framework"
+  ],
   "author": "PanditSiddharth",
   "license": "ISC",
   "bugs": {
