@@ -279,7 +279,7 @@ declare class TgindShort {
      * @param {*} options
      * @returns
      */
-    answerCallbackQuery: (query_id: any, options?: Options) => Promise<any>;
+    ansQuery: (text?: any, options?: Options) => Promise<any>;
     getMe: () => Promise<any>;
     /**
      *

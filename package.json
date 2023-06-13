@@ -1,6 +1,6 @@
 {
   "name": "tgind",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Telegram bot api which gives you simplest way to make your bots",
   "directories": {
     "example": "examples",

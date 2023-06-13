@@ -315,7 +315,7 @@ declare class Tgind extends EventEmitter {
      * @param {*} options
      * @returns
      */
-    answerCallbackQuery: (query_id: any, options?: Options) => Promise<any>;
+    ansQuery: (query_id: any, text: string | number | undefined, options?: Options) => Promise<any>;
     /**
      *
      * @param {*} cmd

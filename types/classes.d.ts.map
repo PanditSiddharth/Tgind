@@ -1,1 +1,1 @@
-{"version":3,"file":"classes.d.ts","sourceRoot":"","sources":["../tgind/classes.ts"],"names":[],"mappings":"AA2BA,cAAM,SAAS;gBACC,IAAI,EAAE,GAAG,EAAE,QAAQ,EAAC,GAAG;CAwBtC;AAGD,eAAe,SAAS,CAAA"}
+{"version":3,"file":"classes.d.ts","sourceRoot":"","sources":["../tgind/classes.ts"],"names":[],"mappings":"AA2BA,cAAM,SAAS;gBACC,IAAI,EAAE,GAAG,EAAE,QAAQ,CAAC,EAAC,GAAG;CAwBvC;AAGD,eAAe,SAAS,CAAA"}
