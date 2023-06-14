@@ -129,7 +129,30 @@ sendAction(chatid, action, options)
 getUserProfilePhotos(user_id, options)  
 getFile(file_id, options)  
 deleteWebhook(optional_dropUpdates)  
+
+// Utilities function 
+util.sleep(time) // give seconds and dont forget to use await before it
+util.del(mesage_id, time) // time to delete message after some seconds you can use null in place of message id if message is next incomming message
+util.send(text, options or time)  // time in seconds 
+util.captalize(text) // returns string compitalized example "it is a string" ouput = "It Is A String"
+util.randNum(min, max) // returns number between min and max
+util.deepClone(object) // deep clone the object
+util.flatten(array) // flatten the array means it adds array's all elements in root 
+util.pick(object, ObjectKeys) // which keys whose you want to make object
 ```  
+
+### Example of use util:  
+
+```ts
+import Tgind from 'tgind';
+import Util from 'tgind/util'; // imported for type
+
+let bot = new Tgind("your bot token", {"start" : true});
+
+bot.on("message", (msg, util) => {
+    util.send("This message is delete in 30 seconds", {"time" : 30}) // and all other Telegrams own options by default it will delete it in 10 seconds
+})
+```
 
 You can use `request` function for all telegrams functions  
 `bot.request(your function name, function parameters)`  

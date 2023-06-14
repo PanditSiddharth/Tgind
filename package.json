@@ -1,6 +1,6 @@
 {
   "name": "tgind",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Telegram bot api which gives you simplest way to make your bots",
   "directories": {
     "example": "examples",
@@ -22,6 +22,10 @@
     "./classes": {
       "types": "./classes.d.ts",
       "default": "./lib/classes.js"
+    },
+    "./util": {
+      "types": "./util.d.ts",
+      "default": "./lib/util.js"
     }
   },
   "files": [
