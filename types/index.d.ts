@@ -324,6 +324,11 @@ declare class Tgind extends EventEmitter {
     command: (cmd: any, callback: any) => Promise<void>;
     /**
      *
+     * @param callback
+     */
+    all: (callback: Function) => Promise<void>;
+    /**
+     *
      * @param {*} str
      * @param {*} callback
      */
