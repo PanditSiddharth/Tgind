@@ -1,7 +1,7 @@
 type Options = {
     [key: string]: any;
 };
-declare class TgindShort {
+export declare class TgindShort {
     private options;
     private TOKEN;
     private offset;
@@ -288,5 +288,5 @@ declare class TgindShort {
      */
     deleteWebhook: (drop_pending_updates?: any) => Promise<any>;
 }
-export default TgindShort;
+export {};
 //# sourceMappingURL=short.d.ts.map

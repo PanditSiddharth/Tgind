@@ -113,11 +113,11 @@ approveJoinRequest(chatid, user_id, options)
 declineJoinRequest(chatid, user_id, options)  
 forward(chatid, from_chat_id, message_id, options)  
 copy(chatid, from_chat_id, message_id, options)  
-sendPhoto(chat, new InputFile(path, filename), options) // import class InputFile first by let InputFile = require(tgind/classes)
-sendAudio(chat, new InputFile(path, filename), options)  // import class InputFile first by let InputFile = require(tgind/classes)
-sendVideo(chat, new InputFile(path, filename), options)  // import class InputFile first by let InputFile = require(tgind/classes)
+sendPhoto(chat, Input.fromLocal(path, filename), options) // let {Tgind, Input} = require('tgind')
+sendAudio(chat, Input.fromLocal(path, filename), options)  
+sendVideo(chat, Input.fromLocal(path, filename), options)  
 sendLocation(chat, latitude, longitude, options)  
-sendDoc(chat,new InputFile(path, filename), options)  // import class InputFile first by let InputFile = require(tgind/classes)
+sendDoc(chat, Input.fromLocal(path, filename), options)  
 sendVenue(chat, latitude, longitude, title, address, options)  
 sendLocation(chat, phone_number, first_name, options)  
 sendPoll(chat, question, your_options, options)  
@@ -145,7 +145,8 @@ util.pick(object, ObjectKeys) // which keys whose you want to make object
 
 ```ts
 import Tgind from 'tgind';
-import Util from 'tgind/util'; // imported for type
+// or
+// import {Tgind} from 'tgind';
 
 let bot = new Tgind("your bot token", {"start" : true});
 
@@ -186,12 +187,11 @@ bot.launch({"dropUpdates": true});
 ## sendDoc method 
 ```js
 let Tgind = require('tgind')
-let InputFile = require("tgind/classes")
 
 let bot = new Tgind("Your token", {"start": true})
 
 bot.command("doc", async (msg)=> {
-    msg.sendDoc(new InputFile("./myfile.pdf", "tgindfile.pdf"))
+    msg.sendDoc(new Input.fromLocal("./myfile.pdf", "tgindfile.pdf"))
 
 })
 

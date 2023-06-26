@@ -1,5 +1,5 @@
 
-class Util {
+export class Util {
     res : any;
     constructor(res: any){
         this.res = res;
@@ -126,5 +126,3 @@ class Util {
       }
       
 }
-
-export default Util

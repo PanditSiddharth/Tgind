@@ -10,7 +10,9 @@ let fs = require('fs')
 
 // Document Extensions
 // const document = ['pdf', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx', 'txt', '.js', '.py'];
-const document = ['pdf', 'docx', 'xlsx', 'pptx', 'doc', 'ppt', 'xls', 'txt', 'csv', 'rtf', 'html', 'xml', 'json', 'yaml', 'css', 'md', 'sql', 'js', 'py', 'java', 'c', 'cpp', 'h', 'rb', 'php', 'pl', 'sh'];
+const document = ['pdf', 'docx', 'xlsx', 'pptx', 'doc', 'ppt', 'xls', 'txt', 
+'csv', 'rtf', 'html', 'xml', 'json', 'yaml', 'css', 'md', 'sql', 'js',
+ 'py', 'java', 'c', 'cpp', 'h', 'rb', 'php', 'pl', 'sh', 'ts', 'replit', 'nix', 'bash'];
 
 
 // Audio Extensions
@@ -25,8 +27,7 @@ const photo = ['jpg', 'jpeg', 'png','gif', 'bmp', 'svg'];
 let category = [document, audio, video, photo]
 let ct = ["document", "audio", "video", "photo"]
 
-class InputFile {
-    constructor(file: any, filename?:any) {
+export let fromLocal = (file: any, filename?:any) => {
         let formData = new FormData();
         let fext = file.match(/\.([a-zA-Z0-9]+)$/)
         let ftype;
@@ -39,7 +40,6 @@ class InputFile {
                     break;
                 }
             }
-
         }
 
         if (filename) {
@@ -50,10 +50,7 @@ class InputFile {
           
         return formData;
     }
-}
 
-module.exports = InputFile
-export default InputFile
 
 const _messageTypes = [
     'text',

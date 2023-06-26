@@ -1,4 +1,4 @@
-declare class Util {
+export declare class Util {
     res: any;
     constructor(res: any);
     /**
@@ -69,5 +69,4 @@ declare class Util {
      */
     pick(obj: any, keys: any): any;
 }
-export default Util;
 //# sourceMappingURL=util.d.ts.map
