@@ -4,6 +4,7 @@ import FormData from 'form-data';
 import fs from 'fs';
 import { TgindShort } from './short';
 import {Util} from './util';
+import Event from './tg/event';
 
 type Options = {[key: string]: any;}
 
@@ -19,27 +20,37 @@ async function error(msg: any) {
   await console.error(newErrorMessage);
 }
 
+let session:Options = {}
 
-class Tgind extends EventEmitter {
-  private options:Options = {}
-  private TOKEN: any;
-  private offset: any;
-  private run: any;
+class Tgind extends Event {
+  // private TOKEN: any;
+  // private offset: any;
+  // private run: any;
+  scene:any = {};
   /**
    * 
    * @param {string} TOKEN 
    * @param {any | undefined} options 
    */
 
-  constructor(TOKEN: any, options: any = {}) {
-    super();
-    this.TOKEN = TOKEN;
+  constructor(TOKEN: any, options: { start?: boolean, scene?:any, ttl?:any, timeout?:any, dropUpdates?:any,} = {}) {
+    super({TOKEN, ...options});
+
+    if(options.scene && typeof options.scene != "string"){
+      for (let i = 0; i < options.scene.length; i++) {
+        let ele = options.scene[i];
+        this.scene[ele.sceneName + ""] = ele
+      }
+    }
+    
+    // this.TOKEN = TOKEN;
     if (options.timeout) {
       this.options = { timeout: options.timeout };
     } else {
       this.options = { timeout: 200000 };
     }
     this.options = { ...this.options, ...options };
+    
     this.offset = 0;
     if (this.options.start) {
       if (!this.options.dropUpdates) {
@@ -695,61 +706,6 @@ class Tgind extends EventEmitter {
     return await this.request("answerCallbackQuery", options)
   }
 
-  /**
-   * 
-   * @param {*} cmd 
-   * @param {*} callback 
-   */
-  command = async (cmd:any, callback:any) => {
-    this.on("message", async (msg:any, util:any) => {
-
-      if (!msg.text || !msg.text.startsWith("/"))
-        return
-
-      if (!cmd.startsWith('/'))
-        cmd = "/" + cmd
-      if (msg.text.match(new RegExp("^(" + cmd + ")", "i"))){
-        if(callback.length == 1)
-        callback(msg)
-        else
-        callback(msg, util)
-      }
-        
-    })
-  }
-
-  /**
-   * 
-   * @param callback 
-   */
-  all = async (callback:Function) => {
-    this.on("all", async (msg: any, util: any) => {
-      if(callback.length == 1)
-      callback(msg)
-      else
-      callback(msg, util)
-    })
-  }
-
-  /**
-   * 
-   * @param {*} str 
-   * @param {*} callback 
-   */
-  matches = async (str:any, callback:any) => {
-    this.on("message", async (msg:any, util: Util) => {
-      if (!msg.text)
-        return
-      let mstr = msg.text.match(str)
-      if (mstr) {
-        Object.assign(msg, { "match": mstr })
-        if(callback.length == 1)
-        callback(msg)
-        else
-        callback(msg, util)
-      }
-    })
-  }
 
 
   getMe = async () => {
@@ -885,18 +841,31 @@ class Tgind extends EventEmitter {
             });
             
             let util = new Util(updt)
+           
+            Object.defineProperty(updt, "session", {
+              value: session,
+              enumerable: false
+            });
 
-          this.emit(evnt as any, updt, util);
-          this.emit('all', updt, util);
+            Object.defineProperty(updt, "ttl", {
+              value: this.options.ttl,
+              enumerable: false
+            });
+           
+          if(session.hasOwnProperty(updt.from.id + "")){
+            let k = this.scene[session[updt.from.id + ""].sceneName]
+            k.emit(evnt as any, updt, util);
+            k.emit('all', updt, util);
+          } else {
+            this.emit(evnt as any, updt, util);
+            this.emit('all', updt, util);
+          }
+
+          // this.emit(evnt as any, updt, util);
         });
       }
       await new Promise(resolve => setTimeout(resolve, 600));
     }
-  }
-
-  stop = async (options:Options = {}) => {
-    this.run = false;
-    return await this.deleteWebhook(true)
   }
 }
 export default Tgind;

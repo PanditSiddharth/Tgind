@@ -1,21 +1,10 @@
-import Event from './tg/event';
+import Event from "./tg/event";
 type Options = {
     [key: string]: any;
 };
-declare class Tgind extends Event {
-    scene: any;
-    /**
-     *
-     * @param {string} TOKEN
-     * @param {any | undefined} options
-     */
-    constructor(TOKEN: any, options?: {
-        start?: boolean;
-        scene?: any;
-        ttl?: any;
-        timeout?: any;
-        dropUpdates?: any;
-    });
+export declare class Scene extends Event {
+    sceneName: any;
+    constructor(sceneName: string, options?: any);
     request: (method: string, options: any, headers?: Options) => Promise<any>;
     /**
      *
@@ -331,25 +320,6 @@ declare class Tgind extends Event {
      * @param {any | undefined} options
      */
     error: (msg: any, options?: Options) => never;
-    /**
-     *
-     * @param {string | number } str
-     * @returns
-     */
-    start: (str: any) => Promise<void>;
-    /**
-     *
-     * @param {string | number } str
-     */
-    help: (str: any) => Promise<void>;
-    /**
-     *
-     * @param {*} update
-     * @param {any | undefined} options
-     * @returns
-     */
-    handleUpdate: (update: Options, options?: Options) => Promise<void>;
-    launch: (options?: Options) => Promise<false | undefined>;
 }
-export default Tgind;
-//# sourceMappingURL=tgind.d.ts.map
+export {};
+//# sourceMappingURL=scene.d.ts.map

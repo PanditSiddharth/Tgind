@@ -12,6 +12,9 @@ export declare class TgindShort {
      */
     constructor(TOKEN: string, options?: Options);
     request: (method: string, options?: Options, headers?: Options) => Promise<any>;
+    enter: (sceneName: any) => Promise<void>;
+    setLeave: () => Promise<void>;
+    leave: () => void;
     /**
      *
   
