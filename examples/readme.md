@@ -74,3 +74,40 @@ bot.command("doc", async (msg)=> {
 })
 
 ```
+
+## Scenes 
+
+```js
+let {Tgind, Scene} = require('tgind')
+
+
+let hello = new Scene('hi')
+hello.on("message", (msg)=> {
+    msg.send('hello')
+
+    if(msg.text == 'bye')
+    msg.enter('bye')
+})
+
+let bye = new Scene('bye')
+bye.on("message", (msg)=> {
+    msg.send('bye')
+
+    if(msg.text == 'nm'){
+        msg.leave()
+    }
+    if(msg.text == 'hi'){
+        msg.enter('hi')
+    }
+})
+
+let bot = new Tgind(token, {"start": true, scene:[hello, bye]})
+
+bot.on("message", async (msg)=> {
+    msg.send('not in scene')
+
+    if(msg.text == 'hi')
+    msg.enter('hi')
+})
+
+```

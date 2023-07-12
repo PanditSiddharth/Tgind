@@ -20,7 +20,7 @@ async function error(msg: any) {
   await console.error(newErrorMessage);
 }
 
-let session:Options = {}
+let session: {[key: string]: any;} = {}
 
 class Tgind extends Event {
   // private TOKEN: any;
@@ -842,15 +842,8 @@ class Tgind extends Event {
             
             let util = new Util(updt)
            
-            Object.defineProperty(updt, "session", {
-              value: session,
-              enumerable: false
-            });
-
-            Object.defineProperty(updt, "ttl", {
-              value: this.options.ttl,
-              enumerable: false
-            });
+            updt.session = session
+            updt.ttl = this.options.ttl
            
           if(session.hasOwnProperty(updt.from.id + "")){
             let k = this.scene[session[updt.from.id + ""].sceneName]

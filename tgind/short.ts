@@ -1,6 +1,7 @@
 
 import axios from 'axios'
 type Options = { [key: string]: any; }
+let ss:Options = {};
 
 export class TgindShort {
 
@@ -43,20 +44,28 @@ export class TgindShort {
   }
 
   enter = async (sceneName:any) => {
-    let uid = this.options.from.id
-    this.options.session[uid + ""] = {sceneName}
+    let uid = this.options.from.id + ""
+    this.options.session[uid] = {sceneName}
+    ss[uid + ""] = {sceneName}
+
+    if(ss.hasOwnProperty('timeoutId')){
+      clearTimeout(ss.timeoutId)
+      delete ss.timeoutId
+    }
     this.__setLeave()
   }
 
  __setLeave = async () => {
   let ttl:any = 10
-  if(ttl)
+  if(this.options.ttl)
   ttl = this.options.ttl
   ttl = ttl * 1000
 
-  setTimeout(() => {
+  ss.timeoutId = setTimeout(() => {
     this.leave()
   }, ttl);
+  // console.log(sa)
+
 }
 
   leave = () => {

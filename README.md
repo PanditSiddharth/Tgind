@@ -22,7 +22,7 @@ Basic template to start creating bot
 
 ## JavaScript code  
 ```js
-let Tgind = require('tgind');
+let {Tgind} = require('tgind');
 let bot = new Tgind("Yor bot token", {"start": true});
 
 bot.on("message", (msg) => {
@@ -32,7 +32,7 @@ bot.on("message", (msg) => {
 
 ## Typescript code  
 ```ts
-import Tgind from 'tgind';
+import {Tgind} from 'tgind';
 let bot = new Tgind("Yor bot token", {"start": true});
 
 bot.on("message", (msg:any) => {
@@ -45,7 +45,7 @@ bot.on("message", (msg:any) => {
 
 // Basic code for Webhook mode (for example vercel)  
 ```js
-let Tgind = require('tgind');
+let {Tgind} = require('tgind');
 let bot = new Tgind("Bot Token");
 
 bot.on("message", (msg) => {
@@ -144,9 +144,8 @@ util.pick(object, ObjectKeys) // which keys whose you want to make object
 ### Example of use util:  
 
 ```ts
-import Tgind from 'tgind';
-// or
-// import {Tgind} from 'tgind';
+
+import {Tgind} from 'tgind';
 
 let bot = new Tgind("your bot token", {"start" : true});
 
@@ -161,7 +160,7 @@ You can use `request` function for all telegrams functions
 ### Example:  
 
 ```js
-let Tgind = require('tgind');
+let {Tgind} = require('tgind');
 let bot = new Tgind("your bot token");
 
 bot.on("message", (msg) => {
@@ -174,7 +173,7 @@ bot.launch({"dropUpdates": true});
 Edit message example :  
 
 ```js
-let Tgind = require('tgind');
+let {Tgind} = require('tgind');
 let bot = new Tgind("Give here your bot token");
 
 bot.on("message", (msg) => {
@@ -186,7 +185,7 @@ bot.launch({"dropUpdates": true});
 
 ## sendDoc method 
 ```js
-let Tgind = require('tgind')
+let {Tgind} = require('tgind')
 
 let bot = new Tgind("Your token", {"start": true})
 
@@ -195,6 +194,41 @@ bot.command("doc", async (msg)=> {
 
 })
 
+```
+
+## You can use scenes also
+
+```js
+let {Tgind, Scene} = require('tgind')
+
+let hello = new Scene('hi')
+hello.on("message", (msg)=> {
+    msg.send('hello')
+
+    if(msg.text == 'bye')
+    msg.enter('bye')
+})
+
+let bye = new Scene('bye')
+bye.on("message", (msg)=> {
+    msg.send('bye')
+
+    if(msg.text == 'nm'){
+        msg.leave()
+    }
+    if(msg.text == 'hi'){
+        msg.enter('hi')
+    }
+})
+
+let bot = new Tgind(token, {"start": true, scene:[hello, bye], ttl: 20})
+
+bot.on("message", async (msg)=> {
+    msg.send('not in scene')
+
+    if(msg.text == 'hi')
+    msg.enter('hi')
+})
 ```
 
 it supports all tg functions and it is a light weight api  
