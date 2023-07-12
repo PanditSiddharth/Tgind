@@ -1,6 +1,6 @@
 {
   "name": "tgind",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Telegram bot api which gives you simplest way to make your bots",
   "directories": {
     "example": "examples",
@@ -44,8 +44,17 @@
     "botapi",
     "bot framework"
   ],
-  "author": "PanditSiddharth",
-  "license": "ISC",
+  "author": {
+    "name": "Siddharth Sharma",
+    "email": "mynmss3@gmail.com",
+    "url": "https://telegram.me/PanditSiddharth"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://opensource.org/license/mit-0/"
+    }
+  ],
   "bugs": {
     "url": "https://github.com/PanditSiddharth/Tgind/issues"
   },
