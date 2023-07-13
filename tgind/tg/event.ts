@@ -4,11 +4,13 @@ import { TgindShort } from '../short';
 import { Util } from '../util';
 type Options = {[key: string]: any;}
 let opt:Options={};
-class Event extends EventEmitter {
+
+class Event {
     options:Options = {}
     TOKEN: any; 
     offset: any;
     run: any;
+    bot = new EventEmitter()
     /**
      * 
      * @param {string} TOKEN 
@@ -16,7 +18,6 @@ class Event extends EventEmitter {
      */
   
     constructor(options: any = {}) {
-      super();
       if(options.TOKEN){
         opt = this.options = options;
         this.TOKEN = options.TOKEN;
@@ -32,6 +33,13 @@ class Event extends EventEmitter {
       this.options = { ...this.options, ...options };
     }
 
+    /**
+     * 
+     * @param method string
+     * @param options object
+     * @param headers 
+     * @returns any
+     */
     request = async (method:string, options:any, headers:Options = {}) => {
         // let formData = {}
         // Object.assign(formData, this.formData)
@@ -106,7 +114,7 @@ class Event extends EventEmitter {
    * @param callback 
    */
   all = async (callback:Function) => {
-    this.on("all", async (msg: any, util: any) => {
+    this.bot.on("all", async (msg: any, util: any) => {
       if(callback.length == 1)
       callback(msg)
       else
@@ -131,6 +139,15 @@ class Event extends EventEmitter {
         else
         callback(msg, util)
       }
+    })
+  }
+
+  on = (evnt:string, callback:any)=> {
+    this.bot.on(evnt,(short:any, util:any)=>{
+      if(callback.length == 1)
+      callback(short)
+      else
+      callback(short, util)
     })
   }
 

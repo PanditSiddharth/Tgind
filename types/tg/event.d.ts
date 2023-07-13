@@ -3,17 +3,25 @@ import { EventEmitter } from 'events';
 type Options = {
     [key: string]: any;
 };
-declare class Event extends EventEmitter {
+declare class Event {
     options: Options;
     TOKEN: any;
     offset: any;
     run: any;
+    bot: EventEmitter;
     /**
      *
      * @param {string} TOKEN
      * @param {any | undefined} options
      */
     constructor(options?: any);
+    /**
+     *
+     * @param method string
+     * @param options object
+     * @param headers
+     * @returns any
+     */
     request: (method: string, options: any, headers?: Options) => Promise<any>;
     /**
      *
@@ -47,6 +55,7 @@ declare class Event extends EventEmitter {
      * @param {*} callback
      */
     matches: (str: any, callback: any) => Promise<void>;
+    on: (evnt: string, callback: any) => void;
     deleteWebhook: (drop_pending_updates?: any) => Promise<any>;
     /**
    *

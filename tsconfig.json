@@ -20,7 +20,9 @@
   "typedocOptions": {
     "excludeExternals": true,
     "includeVersion": true,
+    "entryPoints": ["tgind/index.ts"],
     "name": "tgind",
+    "out": "docs/build/",
     "readme": "README.md"
   },
   "include": ["tgind/"]

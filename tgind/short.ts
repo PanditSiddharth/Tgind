@@ -1,10 +1,11 @@
 
 import axios from 'axios'
+import { EventEmitter } from 'form-data';
 type Options = { [key: string]: any; }
 let ss:Options = {};
 
 export class TgindShort {
-
+  [key: string]: any;
   private options: Options = {};
   private TOKEN: string;
   private offset: number;
@@ -14,7 +15,9 @@ export class TgindShort {
    * @param {any | undefined} options 
    */
   constructor(TOKEN: string, options: Options = {}) {
-
+    // Object.keys(options).forEach((key)=>{
+    //   this[key] = options[key]
+    // })
 
     this.TOKEN = TOKEN;
     this.options = options;

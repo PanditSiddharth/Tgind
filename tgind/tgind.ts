@@ -785,7 +785,7 @@ class Tgind extends Event {
       })
     }
 
-    this.emit(evnt as any, updt);
+    this.bot.emit(evnt as any, updt);
   }
 
   launch = async (options:Options = {}) => {
@@ -820,15 +820,12 @@ class Tgind extends Event {
           }
           updt.update_id = update.update_id
 
+          updt.session = session
+          updt.ttl = this.options.ttl
 
-          let short:any;
-      
-            short = new TgindShort(this.TOKEN, updt)
-            
-            setTimeout(() => {
-              short = null;
-            }, this.options.timeout);
-            
+          let short = new TgindShort(this.TOKEN, updt)
+          let util = new Util(short)
+  
             const methodNames = Object.keys(short)
             
             methodNames.forEach((methodName) => {
@@ -839,20 +836,17 @@ class Tgind extends Event {
                 });
               }
             });
-            
-            let util = new Util(updt)
            
-            updt.session = session
-            updt.ttl = this.options.ttl
-           
+
           if(session.hasOwnProperty(updt.from.id + "")){
-            let k = this.scene[session[updt.from.id + ""].sceneName]
-            k.emit(evnt as any, updt, util);
-            k.emit('all', updt, util);
+            let kkk = this.scene[session[updt.from.id + ""].sceneName]
+            kkk.emit(evnt as any, updt, util);
+            kkk.emit('all',updt, util);
           } else {
-            this.emit(evnt as any, updt, util);
-            this.emit('all', updt, util);
+            this.bot.emit(evnt as any,updt, util);
+            this.bot.emit('all',updt, util);
           }
+
 
           // this.emit(evnt as any, updt, util);
         });

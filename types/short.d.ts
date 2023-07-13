@@ -2,6 +2,7 @@ type Options = {
     [key: string]: any;
 };
 export declare class TgindShort {
+    [key: string]: any;
     private options;
     private TOKEN;
     private offset;
