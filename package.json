@@ -1,0 +1,64 @@
+{
+  "name": "tgind",
+  "version": "2.1.2",
+  "description": "Telegram bot api which gives you simplest way to make your bots",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "form-data": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.2",
+    "typedoc": "^0.24.8",
+    "typescript": "^5.1.6"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./lib/index.js"
+    }
+  },
+  "types": "./types/index.d.ts",
+  "files": [
+    "tgind/**/*.ts",
+    "lib/**/*.js",
+    "types/**/*.d.ts",
+    "types/**/*.d.ts.map"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PanditSiddharth/Tgind.git"
+  },
+  "keywords": [
+    "tgind",
+    "telegram",
+    "tgind-telegram",
+    "tgind-PanditSiddharth",
+    "telegram bot api",
+    "bot",
+    "botapi",
+    "bot framework"
+  ],
+  "author": {
+    "name": "Siddharth Sharma",
+    "email": "mynmss3@gmail.com",
+    "url": "https://telegram.me/PanditSiddharth"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://opensource.org/license/mit-0/"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/PanditSiddharth/Tgind/issues"
+  },
+  "homepage": "https://github.com/PanditSiddharth/Tgind#readme"
+}
