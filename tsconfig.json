@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "module": "Node16",
+    "declaration": true,
+    "declarationMap": true,
+    "declarationDir": "types/",
+    "esModuleInterop": true,
+    "outDir": "lib/",
+    "rootDir": "tgind/",
+    "target": "ES2019",
+    "strict": true,
+    "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "incremental": true,
+    "tsBuildInfoFile": "types/tsconfig.tsbuildinfo",
+    "noErrorTruncation": true,
+    "stripInternal": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "typedocOptions": {
+    "excludeExternals": true,
+    "includeVersion": true,
+    "entryPoints": ["tgind/index.ts"],
+    "name": "tgind",
+    "out": "docs/build/",
+    "readme": "README.md"
+  },
+  "include": ["tgind/"]
+}
