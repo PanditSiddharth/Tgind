@@ -72,9 +72,9 @@ export class Short {
     this.options.session[uid] = {sceneName}
     ss[uid + ""] = {sceneName}
 
-    if(ss.hasOwnProperty('timeoutId')){
-      clearTimeout(ss.timeoutId)
-      delete ss.timeoutId
+    if(ss[uid].hasOwnProperty('timeoutId')){
+      clearTimeout(ss[uid].timeoutId)
+      delete ss[uid].timeoutId
     }
 
     let kkk:any = this.options.scene[this.options.session[this.options.from.id + ""].sceneName]
@@ -83,28 +83,44 @@ export class Short {
     delete sh.TOKEN
     delete sh.session
     delete sh.ttl
-    delete sh.evnt
+    
     let sh2 = new Util(sh)
-    kkk.emit(this.options.evnt as any, sh, sh2);
-    kkk.emit('all', sh, sh2);
+    kkk.emit("enter", sh, sh2);
 
-    this.__setLeave()
+    this.__setLeave(kkk, this, sh2, uid)
   }
 
-  async __setLeave (){
+  private async __setLeave (kkk:any, sh:any, sh2:any, uid:any){
   let ttl:any = 10
   if(this.options.ttl)
   ttl = this.options.ttl
   ttl = ttl * 1000
 
-  ss.timeoutId = setTimeout(() => {
-    this.leave()
+  ss[uid].timeoutId = setTimeout(() => {
+    this.leave({kkk, sh, sh2, uid})
   }, ttl);
 
 }
 
-async leave (){
-    delete this.options.session[this.options.from.id + ""]
+async leave (opk:any={}){
+    if(!opk.sh){
+      let sh = Object.assign(this, this.options)
+
+      delete sh.scene 
+      delete sh.TOKEN
+      delete sh.session
+      delete sh.ttl
+      let kkk:any = this.options.scene[this.options.session[this.options.from.id + ""].sceneName]
+
+      kkk.emit("leave", sh, new Util(sh))
+      clearTimeout(ss[this.options.from.id].timeoutId)
+      delete this.options.session[this.options.from.id + ""]
+    } else{
+      opk.kkk.emit("leave", opk.sh, opk.sh2)
+      clearTimeout(ss[opk.uid].timeoutId)
+      delete this.options.session[opk.uid]
+    }
+
   }
 
   /**

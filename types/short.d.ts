@@ -28,8 +28,8 @@ export declare class Short {
      * msg.enter("greet")
      */
     enter(sceneName: string): Promise<void>;
-    __setLeave(): Promise<void>;
-    leave(): Promise<void>;
+    private __setLeave;
+    leave(opk?: any): Promise<void>;
     /**
      *
   
